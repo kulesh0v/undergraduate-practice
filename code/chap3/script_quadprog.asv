@@ -31,7 +31,7 @@ coeffR = 10^-4;
 coeffQ = 3;
 lambdaSigma=1000;
 lambdaAlphaEps=0.1;
-epsilon=0.005;
+epsilon=0.002;
 R = 10^-4 * eye(2);
 Q = 3 * eye(2);
 normValue = @(x, matrix) sqrt(x * matrix * x');
@@ -64,7 +64,7 @@ steadyFirstIndex = (L + n) * 4 + (N - (L + n) + 1) + 1;
 Aeq = zeros(((L + n) * 4) + (L * 4), ...
             ((L + n) * 4 )+ (N - (L + n) + 1) + (L * 4) + (L + n) *2);
 beq = zeros(1, ((L + n) * 4) + (L * 4));
-uHankel = hankelMatrix(reshape(uData, 2, N)', L + n, N);
+uHankel = hankelMatrix(reshape(uData, 2, N)', L + n, N) * ;
 yHankel = hankelMatrix(reshape(yData, 2, N)', L + n, N);
 
 sigmaIndex = 1;
@@ -161,7 +161,7 @@ for t = 0:n:N
         uRes(j, 1) = res(i);
         uRes(j, 2) = res(i + 1);
         [dsResY, dsResX] = dynamicSystemFunc(uRes(j,:)', xRes(j,:)', A, B, C);
-         yRes(j,:) = dsResY + rand(2,1) * epsilon;
+         yRes(j,:) = dsResY;
         j = j + 1;
         xRes(j,:) = dsResX';
     end
